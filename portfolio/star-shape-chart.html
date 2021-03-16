@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+<div style='width: 200px; height: 200px;' id='wrapper'>
+	<canvas id='canvas' width='200' height='200'></canvas>
+  <p>
+  	2,553
+  	<br />
+  	FOLLOWERS
+  </p>
+</div>
+
+<style>
+	#wrapper {
+		position: relative;
+		margin: 0 auto;
+	}
+	#wrapper p {
+		position: absolute;
+		width: 100px;
+		height: 70px;
+		text-align: center;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto auto;
+	}
+</style>
+
+<script>
+	var data = [
+	  {
+	    name: 'Facebook',
+	    ratio: 0.25,
+	    color: '#003840'
+	  },
+	  {
+	  	name: 'Twitter',
+	  	ratio: 0.25,
+	  	color: '#005A5B'
+	  },
+	  {
+	  	name: 'Instagram',
+	  	ratio: 0.15,
+	  	color: '#007369'
+	  },
+	  {
+	  	name: 'Youtube',
+	  	ratio: 0.35,
+	  	color: '#008C72'
+	  }
+	]
+	var canvas = document.getElementById('canvas');
+	var canvasWidth = canvas.width;
+	var canvasHeight = canvas.height;
+	var ctx = canvas.getContext('2d');
+  // draw outline
+	var R = 90
+	var r = 78;
+	ctx.beginPath();
+	ctx.moveTo(1/2 * canvasWidth, 1/2 * canvasHeight - r);
+	for(var i = 1; i <= 28; i++) {
+	  if (i%2 == 1) {
+	    ctx.lineTo(1/2 * canvasWidth + Math.sin(1/14*Math.PI*i)*R, 1/2 * canvasHeight - Math.cos(1/14*Math.PI*i)*R)
+	  } else {
+	    ctx.lineTo(1/2 * canvasWidth + Math.sin(1/14*Math.PI*i)*r, 1/2 * canvasHeight - Math.cos(1/14*Math.PI*i)*r)
+	  }
+	}
+	ctx.lineWidth = '2';
+	ctx.strokeStyle = '#fff';
+	ctx.stroke();
+	ctx.clip();
+
+	// paint colors
+	var startPoint = 0;
+	data.forEach(function(ele){
+    ctx.beginPath();
+    ctx.moveTo(1/2 * canvasWidth,1/2 * canvasHeight);
+    ctx.arc(1/2 * canvasWidth,1/2 * canvasHeight,R,startPoint, startPoint + ele.ratio * 2 * Math.PI);
+    ctx.fillStyle = ele.color;
+    ctx.fill();
+    startPoint += ele.ratio * 2 * Math.PI;
+	})
+
+  // draw inner circle
+	ctx.beginPath();
+	ctx.arc(1/2 * canvasWidth, 1/2 * canvasHeight, 70, 0, 2 * Math.PI);
+	ctx.fillStyle='#fff';
+	ctx.fill();
+	ctx.stroke();
+	ctx.closePath();
+</script>

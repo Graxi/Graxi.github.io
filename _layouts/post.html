@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Visualization Solutions - Web Development | subtleWorks</title>
+    <meta name='description' content="I'm a freelance front-end web developer specialized in data visualization. On this blog, I share my works on web development and publish book reviews." />
+    <link rel='icon' href='/favicon.png'>
+    <link rel="stylesheet" href="/assets/main.css">
+    <meta name="google-site-verification" content="M-nEjEk1aEOds3jWocvjlcMAAI1g5jW4PThbsF-AjBg" />
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="wrapper">
+        <h1 class='site-title'>
+          <a href='/'>
+            subtleWorks
+            <span>Focusing on Web Data Visualization Solutions</span>
+          </a>
+        </h1>
+        <div class='right-container'>
+          <ul class='nav'>
+            <li class="{% if page.url == '/visualization/' %}active{% endif %}">
+              <a href='/visualization/'>Visualization</a>
+            </li>
+          </ul>
+          <a class='hire-me-btn' href="mailto:subtleworks.cn@gmail.com">Hire Me</a>
+        </div>
+      </div>
+    </header>
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+      {% if page.comments and site.disqus.shortname %}
+        {% include disqus.html %}
+      {% endif %}
+    </main>
+    <footer class='site-footer'>
+      <p>Copyright&copy;2020 subtleworks.cn. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>
